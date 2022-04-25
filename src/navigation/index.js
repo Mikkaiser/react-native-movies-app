@@ -1,3 +1,6 @@
+import React from 'react';
+import { StyleSheet } from 'react-native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from '../Pages/Home';
@@ -13,3 +16,9 @@ export default () => {
     </Stack.Navigator>
   );
 }
+
+const style = StyleSheet.create({
+  navigationRouteBar: {
+    backgroundColor: '#000'
+  }
+});

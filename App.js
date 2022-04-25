@@ -1,12 +1,25 @@
 import React from "react";
-import StackNavigator from './src/Services/navigation';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+
+import StackNavigator from './src/navigation'
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <StackNavigator />
     </NavigationContainer>
   )
 }
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#1f1f1f',
+    card: '#1f1f1f',
+    text: '#fff',
+  },
+  
+};
