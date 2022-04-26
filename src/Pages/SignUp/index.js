@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { SafeAreaView, StyleSheet, Image } from 'react-native';
-import { TextInput } from "@react-native-material/core";
+// import { TextInput } from "@react-native-material/core";
+import { TextInput } from 'react-native-paper';
 import { Text, Button } from "@react-native-material/core";
 import { ScrollView } from 'react-native-gesture-handler';
+import {api} from '../../Services/Api';
 
 export default class Register extends Component {
 
@@ -13,7 +15,11 @@ export default class Register extends Component {
 
 
     async saveMovie() {
-        console.warn('perfect')
+        // Send a POST request
+        await api.post('/movies', {
+            name: this.state.movieName,
+            image: this.state.movieCoverLink
+        })
     }
 
     render() {
@@ -25,24 +31,26 @@ export default class Register extends Component {
                         Cadastrar filme
                     </Text>
                     <TextInput 
-                        variant="outlined" 
+                        mode="outlined" 
                         label="Movie Name"
                         onChangeText={value => this.setState({movieName: value})}
                     />
                     <TextInput 
-                        variant="outlined" 
+                        mode="outlined" 
                         label="Movie Cover Link"
                         style={{marginTop: 20, marginBottom: 30}}
                         onChangeText={value => this.setState({movieCoverLink: value})}
+                        value={this.state.movieCoverLink || ' '}
+                        selectTextOnFocus={true}
                     />
                     <Image 
                         source={{uri: this.state.movieCoverLink}}
-                        style={{ width: 200, height: 300, alignSelf: 'center' }}/>
+                        style={{ width: 150, height: 250, alignSelf: 'center' }}/>
 
                     <Button 
                         title="Salvar" 
-                        onPress={async () => await this.saveMovie()}
-                        style={{marginTop: 20, height: 40, justifyContent: 'center'}}
+                        onPress={() => this.saveMovie()}
+                        style={{marginTop: 30, height: 40, justifyContent: 'center', backgroundColor: '#1f1f1f'}}
                     />
                 </ScrollView>
 
